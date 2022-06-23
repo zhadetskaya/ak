@@ -81,3 +81,43 @@ closeModal();
 moreModal();
 openBurger();
 closesModal();
+
+
+const forms = document.querySelector('.form');
+
+
+const message = {
+    loading: "Загрузка",
+    success: "Спасибо!Скоро мы свяжемся с вами",
+    failure: "Что то пошло не так..."
+}
+forms.forEach(item => {
+    postData(item);
+})
+
+function postData(form) {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const statusMessage = document.createElement('div');
+        statusMessage.classList.add('status');
+        statusMessage.textContent = message.loading;
+        form.append(statusMessage);
+
+        const request = new XMLHttpRequest();
+        request.open('POST', 'server.php');
+
+        const formData = new FormData(form);
+
+        request.send(formData);
+
+        request.addEventListener('load', () => {
+            if (request.status === 200) {
+                statusMessage.textContent = message.success;
+                form.reset();
+            } else {
+                statusMessage.textContent = message.failure;
+            }
+        })
+    });
+}
