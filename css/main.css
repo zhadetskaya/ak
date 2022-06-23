@@ -293,7 +293,7 @@ span {
   display: inline-block;
   vertical-align: top;
 }
-.main__items::before {
+.main__items::before  {
   content: "";
   position: absolute;
   top: 43px;
@@ -386,7 +386,7 @@ span {
   vertical-align: top;
 }
 
-.more {
+.more__btn {
   display: none;
 }
 
@@ -616,6 +616,9 @@ input[type=checkbox]:checked + label:after {
 .webp .wrapper { background: url(../img/BG.webp) top/cover no-repeat; }
 
 .webp .main__item::before { background-image: url(../img/menu_shadow.webp); }
-.main__item:first-child::before {
+.main__item:first-child::before{
+  background-image: none;
+}
+.no-webp .main__item:first-child::before {
   background-image: none;
 }
